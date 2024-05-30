@@ -5,83 +5,88 @@
 
 # React Native
 client/node_modules/
-ios/Pods/
-android/.gradle/
-android/app/build/
-android/.idea/
-android/local.properties
-*.iml
+client/ios/Pods/
+client/android/.gradle/
+client/android/app/build/
+client/android/.idea/
+client/android/local.properties
+client/*.iml
 
 # macOS
-*.DS_Store
+client/.DS_Store
 
 # Linux
-*.lock
+client/*.lock
 
 # Android
-*.apk
-*.aar
-*.ap_
+client/*.apk
+client/*.aar
+client/*.ap_
 
 # iOS
-*.mode1v3
-*.mode2v3
-*.perspectivev3
-xcuserdata/
-*.xccheckout
-*.xcworkspace
-*.xcuserstate
-*.pbxuser
-!default.mode1v3
-!default.mode2v3
-!default.perspectivev3
-DerivedData/
-build/
-*.ipa
-*.dSYM.zip
-*.dSYM
+client/*.mode1v3
+client/*.mode2v3
+client/*.perspectivev3
+client/xcuserdata/
+client/*.xccheckout
+client/*.xcworkspace
+client/*.xcuserstate
+client/*.pbxuser
+client/!default.mode1v3
+client/!default.mode2v3
+client/!default.perspectivev3
+client/DerivedData/
+client/build/
+client/*.ipa
+client/*.dSYM.zip
+client/*.dSYM
 
 # fastlane
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+client/fastlane/report.xml
+client/fastlane/Preview.html
+client/fastlane/screenshots/**/*.png
+client/fastlane/test_output
 
 # Buck
-buck-out/
-\.buckd/
-*.keystore
-!debug.keystore
-.buckconfig.local
+client/buck-out/
+client/\.buckd/
+client/*.keystore
+client/!debug.keystore
+client/.buckconfig.local
 
 # Windows
-Thumbs.db
-*.exe
-*.dll
-*.pdb
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
+client/Thumbs.db
+client/*.exe
+client/*.dll
+client/*.pdb
+client/*.suo
+client/*.user
+client/*.userosscache
+client/*.sln.docstates
 
 # Packages
 # npm
-package-lock.json
+client/package-lock.json
 # yarn
-yarn.lock
+client/yarn.lock
 
 # Editor directories and files
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
+client/.vscode/
+client/.idea/
+client/*.sublime-project
+client/*.sublime-workspace
 
 # Logs
-*.log
+client/*.log
 
 # Coverage
-coverage/
+client/coverage/
 
 # Temporary files
-tmp/
-temp/
+client/tmp/
+client/temp/
+.DS_Store
+client/android/build.gradle
+client/android/gradle.properties
+client/android/settings.gradle
+client/android/app/build.gradle
