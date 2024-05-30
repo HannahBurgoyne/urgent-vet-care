@@ -1,0 +1,84 @@
+# React Native
+node_modules/
+ios/Pods/
+android/.gradle/
+android/app/build/
+android/.idea/
+android/local.properties
+*.iml
+
+# macOS
+*.DS_Store
+
+# Linux
+*.lock
+
+# Android
+*.apk
+*.aar
+*.ap_
+
+# iOS
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xccheckout
+*.xcworkspace
+*.xcuserstate
+*.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Buck
+buck-out/
+\.buckd/
+*.keystore
+!debug.keystore
+.buckconfig.local
+
+# Windows
+Thumbs.db
+*.exe
+*.dll
+*.pdb
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Packages
+# It's recommended to avoid committing package-lock.json and yarn.lock files
+# unless you are sure they are useful for your project.
+# npm
+package-lock.json
+# yarn
+yarn.lock
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+
+# Temporary files
+tmp/
+temp/
