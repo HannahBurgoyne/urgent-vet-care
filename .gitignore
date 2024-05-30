@@ -4,7 +4,7 @@
 
 
 # React Native
-/frontend/node_modules/
+client/node_modules/
 ios/Pods/
 android/.gradle/
 android/app/build/
