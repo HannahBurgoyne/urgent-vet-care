@@ -60,8 +60,6 @@ Thumbs.db
 *.sln.docstates
 
 # Packages
-# It's recommended to avoid committing package-lock.json and yarn.lock files
-# unless you are sure they are useful for your project.
 # npm
 package-lock.json
 # yarn
