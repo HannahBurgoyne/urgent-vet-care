@@ -1,1 +1,5 @@
+# Root-level ignores (general)
 .DS_Store
+Thumbs.db
+*.log
+
