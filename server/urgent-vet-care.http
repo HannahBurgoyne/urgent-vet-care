@@ -1,6 +1,13 @@
 @urgent_vet_care_HostAddress = http://localhost:5141
 
-GET {{urgent_vet_care_HostAddress}}/weatherforecast/
+GET {{urgent_vet_care_HostAddress}}/vetclinic/
 Accept: application/json
 
 ###
+
+GET {{urgent_vet_care_HostAddress}}/vetclinic/1
+Accept: application/json
+
+###
+
+
