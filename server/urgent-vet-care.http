@@ -10,4 +10,28 @@ Accept: application/json
 
 ###
 
+POST {{urgent_vet_care_HostAddress}}/vetclinic/
+Content-Type: application/json
 
+{
+  "Name": "New clinic", 
+  "Address": "123 new street"
+}
+
+###
+
+PUT {{urgent_vet_care_HostAddress}}/vetclinic/2
+Content-Type: application/json
+
+{
+  "Id": 2, 
+  "Name": "Updated clinic", 
+  "Address": "123 updated clinic st"
+
+}
+
+###
+
+DELETE {{urgent_vet_care_HostAddress}}/vetclinic/3
+
+###

@@ -5,7 +5,7 @@ namespace server.Services;
 public static class VetClinicService
 {
   static List<VetClinic> VetClinics { get; }
-  static int nextId = 3;
+  static int nextId = 5;
   static VetClinicService()
   {
     VetClinics = new List<VetClinic>
