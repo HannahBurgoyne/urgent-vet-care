@@ -23,8 +23,8 @@ export default function ClinicsList() {
       <h1>List</h1>
       {data &&
         data.map((clinic) => (
-          <div style={{ border: 'black solid' }}>
-            <p key={clinic.id}>{clinic.name}</p>
+          <div style={{ border: 'black solid' }} key={clinic.id}>
+            <p>{clinic.name}</p>
             <p>{clinic.address}</p>
           </div>
         ))}
