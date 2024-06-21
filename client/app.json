@@ -20,7 +20,12 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.hannahburgoyne.urgent-vet-care"
+      "package": "com.hannahburgoyne.urgentvetcare",
+      "config": {
+        "googleMaps": {
+          "apiKey": ""
+      
+      }
     },
     "web": {
       "bundler": "metro",
@@ -38,7 +43,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "004e92ff-349f-4ea0-9f06-615ec9217129"
+        "projectId": "e6d1cf08-1d08-4955-bf2c-81af7a238d52"
       }
     }
   }
