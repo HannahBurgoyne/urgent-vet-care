@@ -15,8 +15,14 @@ export default function App() {
         return
       }
 
-      let location = await Location.getCurrentPositionAsync({})
-      setLocation(location)
+      if (status) {
+        console.log('if condition true')
+        let location = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Highest,
+        })
+        console.log(location)
+        setLocation(location)
+      }
     })()
   }, [])
 
@@ -25,19 +31,25 @@ export default function App() {
     text = errorMsg
   }
 
+  let string = JSON.stringify(location)
+  console.log(location?.coords.latitude)
+  console.log(location?.coords.longitude)
+
   return (
     <>
       {location && (
-        <MapView
-          style={styles.map}
-          provider={PROVIDER_GOOGLE}
-          initialRegion={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
-          }}
-        />
+        <>
+          <MapView
+            style={styles.map}
+            provider={PROVIDER_GOOGLE}
+            initialRegion={{
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
+              latitudeDelta: 0.005,
+              longitudeDelta: 0.005,
+            }}
+          />
+        </>
       )}
     </>
   )
