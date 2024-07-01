@@ -1,22 +1,45 @@
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
-import { StyleSheet, View, Dimensions } from 'react-native'
+import { StyleSheet, View, Dimensions, Text } from 'react-native'
 import * as Location from 'expo-location'
+import { useEffect, useState } from 'react'
 
-export default async function App() {
-  //TODO: sort this location function out
-  let location = await Location.getCurrentPositionAsync({})
+export default function App() {
+  const [location, setLocation] = useState<null | Location.LocationObject>(null)
+  const [errorMsg, setErrorMsg] = useState<null | string>(null)
+
+  useEffect(() => {
+    ;(async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync()
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied')
+        return
+      }
+
+      let location = await Location.getCurrentPositionAsync({})
+      setLocation(location)
+    })()
+  }, [])
+
+  let text = 'Waiting..'
+  if (errorMsg) {
+    text = errorMsg
+  }
 
   return (
-    <MapView
-      style={styles.map}
-      provider={PROVIDER_GOOGLE}
-      initialRegion={{
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
-      }}
-    />
+    <>
+      {location && (
+        <MapView
+          style={styles.map}
+          provider={PROVIDER_GOOGLE}
+          initialRegion={{
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005,
+          }}
+        />
+      )}
+    </>
   )
 }
 
