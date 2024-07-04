@@ -4,15 +4,22 @@ import * as Location from 'expo-location'
 import { useEffect, useState } from 'react'
 import fetchVetClinics from '@/apis/vetclinics'
 
+interface VetClinic {
+  name: string
+  vicinity: string
+  rating: number
+  user_ratings_total: number
+}
+
 export default function ClinicMapPhone() {
   // TODO:
 
-  // figure out shape of data from Places API and make TS interface, update useState for vetClinics
+  // figure out why data isn't coming through (is api call actually returning data?)
   // Render each vet clinic as a marker on map in user's current location
 
   const [location, setLocation] = useState<null | Location.LocationObject>(null)
   const [errorMsg, setErrorMsg] = useState<null | string>(null)
-  const [vetClinics, setVetClinics] = useState(null)
+  const [vetClinics, setVetClinics] = useState<null | VetClinic[]>(null)
 
   useEffect(() => {
     ;(async () => {
@@ -23,7 +30,7 @@ export default function ClinicMapPhone() {
       }
 
       if (status) {
-        console.log('if condition true')
+        //console.log('if condition true')
         let location = await Location.getCurrentPositionAsync({
           accuracy: Location.Accuracy.Highest,
         })
@@ -32,6 +39,10 @@ export default function ClinicMapPhone() {
 
         const currentClinics = await fetchVetClinics(location)
         setVetClinics(currentClinics)
+
+        vetClinics?.map((clinic) => {
+          console.log('clinic', clinic)
+        })
       }
     })()
   }, [])
@@ -42,8 +53,8 @@ export default function ClinicMapPhone() {
   }
 
   let string = JSON.stringify(location)
-  console.log(location?.coords.latitude)
-  console.log(location?.coords.longitude)
+  // console.log(location?.coords.latitude)
+  //console.log(location?.coords.longitude)
 
   return (
     <>
@@ -62,8 +73,8 @@ export default function ClinicMapPhone() {
             {vetClinics && (
               <Marker
                 coordinate={{
-                  latitude: 35.67714827145542,
-                  longitude: 139.6551462687416,
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
                 }}
               />
             )}
