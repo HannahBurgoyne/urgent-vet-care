@@ -17,11 +17,12 @@ export default async function fetchVetClinics(
     const vetClinics = response.data.results
 
     vetClinics.forEach((clinic, index) => {
-      console.log(`${index + 1}. ${clinic.name}`)
-      console.log(`Address: ${clinic.vicinity}`)
-      console.log(`Rating: ${clinic.rating}`)
-      console.log(`Total Ratings: ${clinic.user_ratings_total}`)
-      console.log('---')
+      console.log(clinic)
+      // console.log(`${index + 1}. ${clinic.name}`)
+      // console.log(`Address: ${clinic.vicinity}`)
+      // console.log(`Rating: ${clinic.rating}`)
+      // console.log(`Total Ratings: ${clinic.user_ratings_total}`)
+      // console.log('---')
     })
     return vetClinics
   } catch (error) {
