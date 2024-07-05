@@ -7,11 +7,11 @@ const type = 'veterinary_care' // Place type to search for
 
 export default async function fetchVetClinics(
   // figure out shape of data from Places API and make TS interface for returning data
-  location: Location.LocationObject
+  locationCoords: string
 ) {
   try {
     const response = await axios.get(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&type=${type}&key=${apiKey}`
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${locationCoords}&radius=${radius}&type=${type}&key=${apiKey}`
     )
 
     const vetClinics = response.data.results

@@ -37,7 +37,9 @@ export default function ClinicMapPhone() {
         console.log(location)
         setLocation(location)
 
-        const currentClinics = await fetchVetClinics(location)
+        const locationString = `${location.coords.latitude},${location.coords.longitude}`
+
+        const currentClinics = await fetchVetClinics(locationString)
         setVetClinics(currentClinics)
 
         vetClinics?.map((clinic) => {
