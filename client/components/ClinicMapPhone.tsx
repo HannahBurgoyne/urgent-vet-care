@@ -19,7 +19,7 @@ export default function ClinicMapPhone() {
 
   const [location, setLocation] = useState<null | Location.LocationObject>(null)
   const [errorMsg, setErrorMsg] = useState<null | string>(null)
-  const [vetClinics, setVetClinics] = useState<null | VetClinic[]>(null)
+  const [vetClinics, setVetClinics] = useState<VetClinic[]>([])
 
   useEffect(() => {
     ;(async () => {
@@ -40,8 +40,11 @@ export default function ClinicMapPhone() {
         const locationString = `${location.coords.latitude},${location.coords.longitude}`
 
         const currentClinics = await fetchVetClinics(locationString)
-        setVetClinics(currentClinics)
-        console.log(currentClinics)
+
+        if (currentClinics) {
+          setVetClinics(currentClinics)
+          console.log(currentClinics)
+        }
 
         vetClinics?.map((clinic) => {
           console.log('clinic', clinic)
