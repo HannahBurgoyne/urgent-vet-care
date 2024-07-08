@@ -4,7 +4,7 @@ import * as Location from 'expo-location'
 import { useEffect, useState } from 'react'
 import fetchVetClinics from '@/apis/vetclinics'
 
-interface VetClinic {
+export interface VetClinic {
   name: string
   vicinity: string
   rating: number
@@ -34,13 +34,14 @@ export default function ClinicMapPhone() {
         let location = await Location.getCurrentPositionAsync({
           accuracy: Location.Accuracy.Highest,
         })
-        console.log(location)
+        //console.log(location)
         setLocation(location)
 
         const locationString = `${location.coords.latitude},${location.coords.longitude}`
 
         const currentClinics = await fetchVetClinics(locationString)
         setVetClinics(currentClinics)
+        console.log(currentClinics)
 
         vetClinics?.map((clinic) => {
           console.log('clinic', clinic)
