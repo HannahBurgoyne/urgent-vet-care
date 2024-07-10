@@ -4,11 +4,21 @@ import * as Location from 'expo-location'
 import { useEffect, useState } from 'react'
 import fetchVetClinics from '@/apis/vetclinics'
 
+export interface Coords {
+  lat: number
+  lng: number
+}
+
+export interface Geometry {
+  location: Coords
+}
+
 export interface VetClinic {
   name: string
   vicinity: string
   rating: number
   user_ratings_total: number
+  geometry: Geometry
 }
 
 export default function ClinicMapPhone() {
@@ -46,9 +56,9 @@ export default function ClinicMapPhone() {
           console.log(currentClinics)
         }
 
-        vetClinics?.map((clinic) => {
-          console.log('clinic', clinic)
-        })
+        // vetClinics?.map((clinic) => {
+        //   console.log('clinic', clinic)
+        // })
       }
     })()
   }, [])
@@ -72,18 +82,21 @@ export default function ClinicMapPhone() {
             initialRegion={{
               latitude: location.coords.latitude,
               longitude: location.coords.longitude,
-              latitudeDelta: 0.005,
-              longitudeDelta: 0.005,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
             }}
           >
-            {vetClinics && (
-              <Marker
-                coordinate={{
-                  latitude: location.coords.latitude,
-                  longitude: location.coords.longitude,
-                }}
-              />
-            )}
+            {vetClinics &&
+              vetClinics.map((clinic, i) => (
+                // TODO: make marker clickable so it takes user to clinic details and directions
+                <Marker
+                  key={`${i}: ${clinic.name}`}
+                  coordinate={{
+                    latitude: clinic.geometry.location.lat,
+                    longitude: clinic.geometry.location.lng,
+                  }}
+                />
+              ))}
           </MapView>
         </>
       )}
