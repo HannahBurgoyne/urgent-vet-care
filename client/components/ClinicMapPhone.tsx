@@ -3,6 +3,7 @@ import { StyleSheet, View, Dimensions, Text } from 'react-native'
 import * as Location from 'expo-location'
 import { useEffect, useState } from 'react'
 import fetchVetClinics from '@/apis/vetclinics'
+import ClinicsList from './ClinicsList'
 
 export interface Coords {
   lat: number
@@ -24,8 +25,7 @@ export interface VetClinic {
 export default function ClinicMapPhone() {
   // TODO:
 
-  // figure out why data isn't coming through (is api call actually returning data?)
-  // Render each vet clinic as a marker on map in user's current location
+  // Separate concerns - make parent component and prop drill clinic data into map and list components respectively
 
   const [location, setLocation] = useState<null | Location.LocationObject>(null)
   const [errorMsg, setErrorMsg] = useState<null | string>(null)
@@ -55,10 +55,6 @@ export default function ClinicMapPhone() {
           setVetClinics(currentClinics)
           console.log(currentClinics)
         }
-
-        // vetClinics?.map((clinic) => {
-        //   console.log('clinic', clinic)
-        // })
       }
     })()
   }, [])
@@ -69,8 +65,6 @@ export default function ClinicMapPhone() {
   }
 
   let string = JSON.stringify(location)
-  // console.log(location?.coords.latitude)
-  //console.log(location?.coords.longitude)
 
   return (
     <>
@@ -98,6 +92,7 @@ export default function ClinicMapPhone() {
                 />
               ))}
           </MapView>
+          <ClinicsList clinics={vetClinics} />
         </>
       )}
     </>
