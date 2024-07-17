@@ -1,5 +1,5 @@
 import { VetClinic } from './ClinicMapPhone'
-import { View, Text, ViewComponent } from 'react-native'
+import { View, Text } from 'react-native'
 
 interface Props {
   clinics: VetClinic[]
