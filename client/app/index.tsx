@@ -1,5 +1,5 @@
-import ClinicMapPhone from '@/components/ClinicMapPhone'
-import { Text, View } from 'react-native'
+import Home from '@/components/Home'
+import { View } from 'react-native'
 
 export default function Index() {
   return (
@@ -10,7 +10,7 @@ export default function Index() {
         alignItems: 'center',
       }}
     >
-      <ClinicMapPhone />
+      <Home />
     </View>
   )
 }
