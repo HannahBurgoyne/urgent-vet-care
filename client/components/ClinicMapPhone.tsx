@@ -12,8 +12,6 @@ export default function ClinicMapPhone(props: Props) {
   const { location, clinics } = props
   // TODO:
 
-  // Separate concerns - make parent component and prop drill clinic data into map and list components respectively
-
   return (
     <>
       {location && (
