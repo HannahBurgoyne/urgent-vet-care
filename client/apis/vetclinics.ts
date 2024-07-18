@@ -1,4 +1,4 @@
-import { VetClinic } from '@/components/ClinicMapPhone'
+import { VetClinic } from '@/models/Clinics'
 import axios from 'axios'
 
 const apiKey: string | undefined = ''
