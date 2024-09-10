@@ -18,7 +18,6 @@ export default function ClinicMapPhone(props: Props) {
         <>
           <MapView
             style={styles.map}
-            provider={PROVIDER_GOOGLE}
             initialRegion={{
               latitude: location.coords.latitude,
               longitude: location.coords.longitude,

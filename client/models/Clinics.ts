@@ -5,5 +5,10 @@ export interface VetClinic {
   vicinity: string
   rating: number
   user_ratings_total: number
+  opening_hours: OpeningHours
   geometry: Geometry
+}
+
+export interface OpeningHours {
+  open_now: boolean
 }

@@ -1,7 +1,7 @@
 import { VetClinic } from '@/models/Clinics'
 import axios from 'axios'
 
-const apiKey: string | undefined = ''
+const apiKey: string | undefined = 'AIzaSyATo9em5da7QIX8T7mtdl3Z5wumbafvpV0'
 
 if (!apiKey) {
   throw new Error('Google Maps API key is not defined in environment variables')
