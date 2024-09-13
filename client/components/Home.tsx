@@ -4,6 +4,7 @@ import fetchVetClinics from '@/apis/vetclinics'
 import ClinicMapPhone from './ClinicMapPhone'
 import ClinicsList from './ClinicsList'
 import { VetClinic } from '@/models/Clinics'
+import { Coords } from '@/models/Location'
 
 export default function Home() {
   const [location, setLocation] = useState<null | Location.LocationObject>(null)
@@ -26,9 +27,12 @@ export default function Home() {
         //console.log(location)
         setLocation(location)
 
-        const locationString = `${location.coords.latitude},${location.coords.longitude}`
+        const locationObj: Coords = {
+          lat: location.coords.latitude,
+          lng: location.coords.longitude,
+        }
 
-        const currentClinics = await fetchVetClinics(locationString)
+        const currentClinics = await fetchVetClinics(locationObj)
 
         if (currentClinics) {
           setVetClinics(currentClinics)
