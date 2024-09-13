@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "an app to help pet owners find an urgent vet quickly in an emergency",
   "main": "index.js",
+  "proxy": "http://localhost:5141",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "run-p start:server start:client",
     "start:server": "cd server && dotnet run",
-    "start:client": "cd client && npm start"
+    "start:client": "cd client && npx expo start --ios"
   },
   "author": "Hannah Burgoyne",
   "license": "ISC",
