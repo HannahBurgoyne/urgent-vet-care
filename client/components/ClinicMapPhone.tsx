@@ -32,8 +32,8 @@ export default function ClinicMapPhone(props: Props) {
                 <Marker
                   key={`${i}: ${clinic.name}`}
                   coordinate={{
-                    latitude: clinic.geometry.location.lat,
-                    longitude: clinic.geometry.location.lng,
+                    latitude: clinic.location.lat,
+                    longitude: clinic.location.lng,
                   }}
                 />
               ))}
