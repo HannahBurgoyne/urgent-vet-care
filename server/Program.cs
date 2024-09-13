@@ -1,7 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
 
+DotNetEnv.Env.TraversePath().Load();
+
 // Add services to the container.
 builder.Services.AddControllers();
+
+// Register HttpClient
+builder.Services.AddHttpClient();
 
 // Configure CORS
 builder.Services.AddCors(options =>
