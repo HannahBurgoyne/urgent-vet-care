@@ -1,12 +1,11 @@
-import { Geometry } from './Location'
+import { Coords } from './Location'
 
 export interface VetClinic {
   name: string
-  vicinity: string
+  address: string
   rating: number
-  user_ratings_total: number
-  opening_hours: OpeningHours
-  geometry: Geometry
+  location: Coords
+  businessStatus: string
 }
 
 export interface OpeningHours {
