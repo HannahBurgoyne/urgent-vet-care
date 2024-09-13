@@ -1,72 +1,66 @@
-using server.Models; 
-using server.Services; 
-using Microsoft.AspNetCore;
+using server.Models;
+using server.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq; // For JObject parsing
+using DotNetEnv;
 
-namespace urgent_vet_care.Controllers; 
+namespace urgent_vet_care.Controllers;
 
 [ApiController]
-[Route("[controller]")] 
+[Route("[controller]")]
 public class VetClinicController : ControllerBase
 {
-  public VetClinicController() 
-  {
+    private readonly HttpClient _httpClient;
+    private readonly string _apiKey;
 
-  }
+    public VetClinicController(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+        _apiKey = DotNetEnv.Env.GetString("GOOGLE_API_KEY", "Google API key not found");
 
-  // GET all clinics 
-  [HttpGet]
-  public ActionResult<List<VetClinic>> GetAll() => 
-          VetClinicService.GetAll();
+    }
 
-  // GET clinic by Id 
-  [HttpGet("{id}")]
-  public ActionResult<VetClinic> Get(int id) 
-  {
-    var vetClinic = VetClinicService.Get(id); 
+    [HttpGet("nearby-clinics")]
+    public async Task<ActionResult<List<VetClinic>>> GetNearbyVetClinics(double lat, double lng, int radius = 30000)
+    {
+        string requestUri = $"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{lng}&radius={radius}&type=veterinary_care&opennow=true&key={_apiKey}";
 
-    if(vetClinic == null) 
-      return NotFound();
-    
-    return vetClinic;
-  }
+        try
+        {
+            var response = await _httpClient.GetStringAsync(requestUri);
+            var data = JObject.Parse(response);
+            var results = data["results"];
 
-  // POST new clinic 
-  [HttpPost]
-  public IActionResult Create(VetClinic vetClinic)
-  {
-    VetClinicService.Add(vetClinic); 
-    return CreatedAtAction(nameof(Get), new { id = vetClinic.Id}, vetClinic);
-  }
+            var vetClinics = new List<VetClinic>();
 
-  // PUT existing clinic 
-  [HttpPut("{id}")]
-  public IActionResult Update(int id, VetClinic vetClinic)
-  {
-    if (id != vetClinic.Id)
-      return BadRequest(); 
+            foreach (var result in results)
+            {
+                var businessStatus = result["business_status"]?.ToString();
+                if (businessStatus == "OPERATIONAL")
+                {
+                    vetClinics.Add(new VetClinic
+                    {
+                        Name = result["name"]?.ToString() ?? string.Empty,
+                        Address = result["vicinity"]?.ToString() ?? string.Empty,
+                        Rating = result["rating"]?.ToObject<double>() ?? 0.0,
+                        Location = new Location
+                        {
+                            Lat = result["geometry"]?["location"]?["lat"]?.ToObject<double>() ?? 0.0,
+                            Lng = result["geometry"]?["location"]?["lng"]?.ToObject<double>() ?? 0.0
+                        },
+                        BusinessStatus = businessStatus ?? string.Empty
+                    });
+                }
+            }
 
-    var existingClinic = VetClinicService.Get(id); 
-    if (existingClinic is null)
-        return NotFound(); 
-
-    VetClinicService.Update(vetClinic);
-
-    return NoContent(); 
-  }
-  
-
-  // DELETE clinic 
-  [HttpDelete("{id}")]
-  public IActionResult Delete(int id) 
-  {
-    var vetClinic = VetClinicService.Get(id); 
-
-    if (vetClinic is null)
-        return NotFound(); 
-
-    VetClinicService.Delete(id); 
-
-    return NoContent();
-  }
+            return Ok(vetClinics);
+        }
+        catch (Exception)
+        {
+            // Log the exception (ex) here for debugging
+            return StatusCode(500, "Internal server error");
+        }
+    }
 }
