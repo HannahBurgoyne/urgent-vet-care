@@ -1,37 +1,39 @@
 @urgent_vet_care_HostAddress = http://localhost:5141
 
-GET {{urgent_vet_care_HostAddress}}/vetclinic/
-Accept: application/json
+# GET {{urgent_vet_care_HostAddress}}/vetclinic/
+# Accept: application/json
 
-###
+# ###
 
-GET {{urgent_vet_care_HostAddress}}/vetclinic/1
-Accept: application/json
+# GET {{urgent_vet_care_HostAddress}}/vetclinic/1
+# Accept: application/json
 
-###
+# ###
 
-POST {{urgent_vet_care_HostAddress}}/vetclinic/
-Content-Type: application/json
+# POST {{urgent_vet_care_HostAddress}}/vetclinic/
+# Content-Type: application/json
 
-{
-  "Name": "New clinic", 
-  "Address": "123 new street"
-}
+# {
+#   "Name": "New clinic", 
+#   "Address": "123 new street"
+# }
 
-###
+# ###
 
-PUT {{urgent_vet_care_HostAddress}}/vetclinic/2
-Content-Type: application/json
+# PUT {{urgent_vet_care_HostAddress}}/vetclinic/2
+# Content-Type: application/json
 
-{
-  "Id": 2, 
-  "Name": "Updated clinic", 
-  "Address": "123 updated clinic st"
+# {
+#   "Id": 2, 
+#   "Name": "Updated clinic", 
+#   "Address": "123 updated clinic st"
 
-}
+# }
 
-###
+# ###
 
-DELETE {{urgent_vet_care_HostAddress}}/vetclinic/3
+# DELETE {{urgent_vet_care_HostAddress}}/vetclinic/3
 
-###
+# ###
+
+GET {{urgent_vet_care_HostAddress}}/nearby-clinics
