@@ -1,11 +1,6 @@
 import { VetClinic } from '@/models/Clinics'
-import axios from 'axios'
-
-const apiKey: string | undefined = 'AIzaSyATo9em5da7QIX8T7mtdl3Z5wumbafvpV0'
-
-if (!apiKey) {
-  throw new Error('Google Maps API key is not defined in environment variables')
-}
+import { Coords } from '@/models/Location'
+import request from 'superagent'
 
 // TODO: make search radius adjustable by user
 const radius = 5000 // Search radius in meters (adjust as needed)
@@ -14,26 +9,21 @@ const type = 'veterinary_care' // Place type to search for
 //TODO: Make list of vet clinics, sorted by distance, to appear in a new component under/in different tab from Map
 //TODO: Allow user to store data in persistent 'favourites' storage
 
-export default async function fetchVetClinics(locationCoords: string) {
+export default async function fetchVetClinics(
+  locationCoords: Coords
+): Promise<VetClinic[] | undefined> {
   try {
-    const response = await axios.get(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${locationCoords}&radius=${radius}&type=${type}&opennow=true&key=${apiKey}`
-    )
-    const vetClinics = response.data.results as VetClinic[]
+    const lat = locationCoords.lat.toFixed(4)
+    const lng = locationCoords.lng.toFixed(4)
 
-    vetClinics.forEach((clinic, index) => {
-      console.log(`${index + 1}. ${clinic.name}`)
-      console.log(`Address: ${clinic.vicinity}`)
-      console.log(
-        `Coords: ${clinic.geometry.location.lat}, ${clinic.geometry.location.lng}`
-      )
-      console.log(`Open now: ${clinic.opening_hours.open_now}`)
-      console.log(`Rating: ${clinic.rating}`)
-      console.log(`Total Ratings: ${clinic.user_ratings_total}`)
-      console.log('---')
-    })
-    return vetClinics as VetClinic[]
+    console.log(lat)
+    console.log(lng)
+
+    const response = await request.get(
+      `http://localhost:5141/VetClinic/nearby-clinics?lat=${lat}&lng=${lng}&radius=5000`
+    )
+    return response.body as VetClinic[]
   } catch (error) {
-    console.error('Error fetching vet clinics:', error)
+    console.error('Unexpected error:', error)
   }
 }
