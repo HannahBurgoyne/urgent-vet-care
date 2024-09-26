@@ -6,6 +6,7 @@ interface Props {
 }
 
 export default function ClinicsList({ clinics }: Props) {
+  // TODO: Add distance from user, sort by nearest first
   return (
     <View style={styles.container}>
       <FlatList
