@@ -5,8 +5,7 @@ interface Props {
   clinics: VetClinic[]
 }
 
-export default function ClinicsList(props: Props) {
-  const { clinics } = props
+export default function ClinicsList({ clinics }: Props) {
   return (
     <View style={styles.container}>
       <FlatList
