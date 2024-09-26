@@ -5,6 +5,7 @@ import ClinicMapPhone from './ClinicMapPhone'
 import ClinicsList from './ClinicsList'
 import { VetClinic } from '@/models/Clinics'
 import { Coords } from '@/models/Location'
+import { View } from 'react-native'
 
 export default function Home() {
   const [location, setLocation] = useState<null | Location.LocationObject>(null)
@@ -52,10 +53,11 @@ export default function Home() {
     clinics: vetClinics,
   }
 
-  return (
-    <>
-      <ClinicMapPhone location={location} clinics={vetClinics} />
-      <ClinicsList clinics={vetClinics} />
-    </>
-  )
+  if (location && vetClinics)
+    return (
+      <View>
+        <ClinicMapPhone location={location} clinics={vetClinics} />
+        <ClinicsList clinics={vetClinics} />
+      </View>
+    )
 }
