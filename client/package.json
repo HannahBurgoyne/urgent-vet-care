@@ -3,7 +3,7 @@
   "main": "expo-router/entry",
   "type": "module",
   "version": "1.0.0",
-  "proxy": "http://localhost:5141", 
+  "proxy": "http://localhost:5141",
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
@@ -18,7 +18,9 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
-    "@react-navigation/native": "^6.0.2",
+    "@react-navigation/bottom-tabs": "^6.6.1",
+    "@react-navigation/native": "^6.1.18",
+    "@react-navigation/native-stack": "^6.11.0",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "expo": "~51.0.31",
