@@ -5,6 +5,7 @@ export interface VetClinic {
   address: string
   rating: number
   location: Coords
+  placeId: string
   businessStatus: string
 }
 

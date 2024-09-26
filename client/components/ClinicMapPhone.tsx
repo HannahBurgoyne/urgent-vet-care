@@ -64,6 +64,7 @@ export default function ClinicMapPhone({ location, clinics }: Props) {
                 <View style={styles.modalContent}>
                   <Text style={styles.modalTitle}>{selectedClinic.name}</Text>
                   <Text>Address: {selectedClinic.address}</Text>
+                  <Text>Place Id: {selectedClinic.placeId}</Text>
                   <Text style={styles.closeButton} onPress={closeModal}>
                     Close
                   </Text>
