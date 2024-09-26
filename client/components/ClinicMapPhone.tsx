@@ -1,24 +1,23 @@
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
-import { StyleSheet, View, Dimensions, Text } from 'react-native'
+import MapView, { Marker } from 'react-native-maps'
+import { StyleSheet, Dimensions } from 'react-native'
 import * as Location from 'expo-location'
 import { VetClinic } from '@/models/Clinics'
 
 interface Props {
-  location: Location.LocationObject | null
+  location: Location.LocationObject
   clinics: VetClinic[]
 }
 
-export default function ClinicMapPhone(props: Props) {
-  const { location, clinics } = props
-  // TODO:
-
+export default function ClinicMapPhone({ location, clinics }: Props) {
+  // console.log('location', location)
+  // console.log('clinics', clinics)
   return (
     <>
       {location && (
         <>
           <MapView
             style={styles.map}
-            // provider={PROVIDER_GOOGLE}
+            // provider={PROVIDER_GOOGLE} // using apple maps on iOS
             initialRegion={{
               latitude: location.coords.latitude,
               longitude: location.coords.longitude,
