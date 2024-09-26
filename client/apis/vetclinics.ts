@@ -16,8 +16,8 @@ export default async function fetchVetClinics(
     const lat = locationCoords.lat.toFixed(4)
     const lng = locationCoords.lng.toFixed(4)
 
-    console.log(lat)
-    console.log(lng)
+    // console.log(lat)
+    // console.log(lng)
 
     const response = await request.get(
       `http://localhost:5141/VetClinic/nearby-clinics?lat=${lat}&lng=${lng}&radius=5000`
