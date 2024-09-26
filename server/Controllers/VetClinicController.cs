@@ -32,7 +32,6 @@ public class VetClinicController : ControllerBase
             var response = await _httpClient.GetStringAsync(requestUri);
             var data = JObject.Parse(response);
             var results = data["results"];
-
             var vetClinics = new List<VetClinic>();
 
             foreach (var result in results)
@@ -50,6 +49,7 @@ public class VetClinicController : ControllerBase
                             Lat = result["geometry"]?["location"]?["lat"]?.ToObject<double>() ?? 0.0,
                             Lng = result["geometry"]?["location"]?["lng"]?.ToObject<double>() ?? 0.0
                         },
+                        PlaceId = result["place_id"]?.ToString() ?? string.Empty,
                         BusinessStatus = businessStatus ?? string.Empty
                     });
                 }

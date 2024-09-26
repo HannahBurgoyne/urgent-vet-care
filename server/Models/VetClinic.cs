@@ -6,6 +6,8 @@ public class VetClinic
   public string Address { get; set; }
   public double? Rating { get; set; }
   public Location Location { get; set; }
+
+  public string PlaceId {get; set;} // we need this to get more details about the place
   public string BusinessStatus { get; set; }  // Operational status ("OPERATIONAL", "CLOSED_TEMPORARILY", etc.)
 }
 
