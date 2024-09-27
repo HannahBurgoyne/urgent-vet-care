@@ -37,3 +37,7 @@
 # ###
 
 GET {{urgent_vet_care_HostAddress}}/nearby-clinics
+
+###
+
+GET {{{{urgent_vet_care_HostAddress}}}}/clinic-details
