@@ -74,7 +74,7 @@ public class VetClinicController : ControllerBase
       var response = await _httpClient.GetStringAsync(requestUri);
       var data = JObject.Parse(response);
       var results = data["results"];
-      var clinicDetails = new < ClinicDetails > ();
+      var clinicDetails = new <ClinicDetails> ();
 
       clinicDetails.Add(new ClinicDetails
       {
