@@ -1,4 +1,5 @@
 import { VetClinic } from '@/models/Clinics'
+import { vetClinics, clinicDetails } from '../mockData/data'
 import { Coords } from '@/models/Location'
 import request from 'superagent'
 
@@ -19,9 +20,11 @@ export default async function fetchVetClinics(
     // console.log(lat)
     // console.log(lng)
 
-    const response = await request.get(
-      `http://localhost:5141/VetClinic/nearby-clinics?lat=${lat}&lng=${lng}&radius=5000`
-    )
+    const response = await Promise.resolve({ body: vetClinics })
+
+    // const response = await request.get(
+    //   `http://localhost:5141/VetClinic/nearby-clinics?lat=${lat}&lng=${lng}&radius=5000`
+    // )
     return response.body as VetClinic[]
   } catch (error) {
     console.error('Unexpected error:', error)
