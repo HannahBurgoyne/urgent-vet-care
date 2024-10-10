@@ -3,7 +3,7 @@ import { VetClinic } from '@/models/Clinics'
 
 interface Props {
   closeModal: () => void
-  selectedClinic: VetClinic | null
+  selectedClinic: VetClinic
 }
 
 export default function ClinicDetails({ closeModal, selectedClinic }: Props) {
