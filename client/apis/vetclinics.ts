@@ -1,4 +1,4 @@
-import { VetClinic } from '@/models/Clinics'
+import { ClinicDetails, VetClinic } from '@/models/Clinics'
 import { vetClinics, clinicDetails } from '../mockData/data'
 import { Coords } from '@/models/Location'
 import request from 'superagent'
@@ -10,7 +10,7 @@ const type = 'veterinary_care' // Place type to search for
 //TODO: Make list of vet clinics, sorted by distance, to appear in a new component under/in different tab from Map
 //TODO: Allow user to store data in persistent 'favourites' storage
 
-export default async function fetchVetClinics(
+export async function fetchVetClinics(
   locationCoords: Coords
 ): Promise<VetClinic[] | undefined> {
   try {
@@ -26,6 +26,17 @@ export default async function fetchVetClinics(
     //   `http://localhost:5141/VetClinic/nearby-clinics?lat=${lat}&lng=${lng}&radius=5000`
     // )
     return response.body as VetClinic[]
+  } catch (error) {
+    console.error('Unexpected error:', error)
+  }
+}
+
+export async function fetchClinicDetails(clinicId: string) {
+  try {
+    clinicId // not used right now while data is mocked
+    const response = await Promise.resolve({ body: clinicDetails })
+
+    return response.body as ClinicDetails
   } catch (error) {
     console.error('Unexpected error:', error)
   }
