@@ -1,9 +1,9 @@
 import MapView, { Marker } from 'react-native-maps'
-import { StyleSheet, Dimensions, Modal, View } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import * as Location from 'expo-location'
 import { VetClinic } from '@/models/Clinics'
 import { useState } from 'react'
-import { Text } from 'react-native'
+import ClinicDetails from './ClinicDetails'
 
 interface Props {
   location: Location.LocationObject
@@ -54,23 +54,10 @@ export default function ClinicMapPhone({ location, clinics }: Props) {
               ))}
           </MapView>
           {selectedClinic && (
-            <Modal
-              transparent={true}
-              animationType="fade"
-              visible={!!selectedClinic}
-              onRequestClose={closeModal}
-            >
-              <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                  <Text style={styles.modalTitle}>{selectedClinic.name}</Text>
-                  <Text>Address: {selectedClinic.address}</Text>
-                  <Text>Place Id: {selectedClinic.placeId}</Text>
-                  <Text style={styles.closeButton} onPress={closeModal}>
-                    Close
-                  </Text>
-                </View>
-              </View>
-            </Modal>
+            <ClinicDetails
+              closeModal={closeModal}
+              selectedClinic={selectedClinic}
+            />
           )}
         </>
       )}
