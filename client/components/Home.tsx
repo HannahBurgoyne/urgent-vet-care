@@ -1,6 +1,6 @@
 import * as Location from 'expo-location'
 import { useEffect, useState } from 'react'
-import fetchVetClinics from '@/apis/vetclinics'
+import { fetchVetClinics } from '@/apis/vetclinics'
 import ClinicMapPhone from './ClinicMapPhone'
 import ClinicsList from './ClinicsList'
 import { VetClinic } from '@/models/Clinics'
