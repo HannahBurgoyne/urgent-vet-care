@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router'
 import { useState, useEffect } from 'react'
 import { Text } from 'react-native'
-import fetchVetClinics from '@/apis/vetclinics'
+import { fetchVetClinics } from '@/apis/vetclinics'
 import * as Location from 'expo-location'
 import { VetClinic } from '@/models/Clinics'
 import { Coords } from '@/models/Location'
