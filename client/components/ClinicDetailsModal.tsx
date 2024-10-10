@@ -20,8 +20,9 @@ export default function ClinicDetailsModal({
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>{selectedClinic.name}</Text>
-          <Text>Address: {selectedClinic.address}</Text>
-          <Text>Place Id: {selectedClinic.placeId}</Text>
+          <Text>{selectedClinic.name}</Text>
+          <Text>Address: {selectedClinic.formattedAddress}</Text>
+          <Text>Phone Number: {selectedClinic.formattedPhoneNumber}</Text>
           <Text style={styles.closeButton} onPress={closeModal}>
             Close
           </Text>

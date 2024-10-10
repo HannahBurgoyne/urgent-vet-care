@@ -21,6 +21,7 @@ export default function ClinicMapPhone({ location, clinics }: Props) {
   async function handleMarkerPress(clinicData: VetClinic) {
     console.log(`clicked on ${clinicData.name}`)
     const clinicDetails = await fetchClinicDetails(clinicData.placeId)
+    console.log(clinicDetails)
     if (clinicDetails) setSelectedClinic(clinicDetails)
   }
 
