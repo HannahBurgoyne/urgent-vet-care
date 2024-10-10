@@ -1,9 +1,10 @@
 import MapView, { Marker } from 'react-native-maps'
 import { StyleSheet, Dimensions } from 'react-native'
 import * as Location from 'expo-location'
-import { VetClinic } from '@/models/Clinics'
+import { ClinicDetails, VetClinic } from '@/models/Clinics'
 import { useState } from 'react'
-import ClinicDetails from './ClinicDetails'
+import { fetchClinicDetails } from '@/apis/vetclinics'
+import ClinicDetailsModal from './ClinicDetailsModal'
 
 interface Props {
   location: Location.LocationObject
@@ -11,13 +12,16 @@ interface Props {
 }
 
 export default function ClinicMapPhone({ location, clinics }: Props) {
-  const [selectedClinic, setSelectedClinic] = useState<VetClinic | null>(null)
+  const [selectedClinic, setSelectedClinic] = useState<ClinicDetails | null>(
+    null
+  )
   // console.log('location', location)
   // console.log('clinics', clinics)
 
-  function handleMarkerPress(clinicData: VetClinic) {
+  async function handleMarkerPress(clinicData: VetClinic) {
     console.log(`clicked on ${clinicData.name}`)
-    setSelectedClinic(clinicData)
+    const clinicDetails = await fetchClinicDetails(clinicData.placeId)
+    if (clinicDetails) setSelectedClinic(clinicDetails)
   }
 
   function closeModal() {
@@ -54,7 +58,7 @@ export default function ClinicMapPhone({ location, clinics }: Props) {
               ))}
           </MapView>
           {selectedClinic && (
-            <ClinicDetails
+            <ClinicDetailsModal
               closeModal={closeModal}
               selectedClinic={selectedClinic}
             />
