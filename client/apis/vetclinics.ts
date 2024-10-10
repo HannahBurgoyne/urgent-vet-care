@@ -1,7 +1,7 @@
 import { ClinicDetails, VetClinic } from '@/models/Clinics'
 import { vetClinics, clinicDetails } from '../mockData/data'
 import { Coords } from '@/models/Location'
-import request from 'superagent'
+//import request from 'superagent'
 
 // TODO: make search radius adjustable by user
 const radius = 5000 // Search radius in meters (adjust as needed)
