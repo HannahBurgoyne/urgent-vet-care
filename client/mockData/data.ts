@@ -221,89 +221,87 @@ export const vetClinics = [
   },
 ]
 
-export const clinicDetails = [
-  {
-    id: '',
-    name: 'Devonport Veterinary Centre',
-    openingHours: {
-      openNow: true,
-      periods: [
-        {
-          open: {
-            day: 1,
-            time: '0800',
-          },
-          close: {
-            day: 1,
-            time: '1800',
-          },
+export const clinicDetails = {
+  id: '',
+  name: 'Devonport Veterinary Centre',
+  openingHours: {
+    openNow: true,
+    periods: [
+      {
+        open: {
+          day: 1,
+          time: '0800',
         },
-        {
-          open: {
-            day: 2,
-            time: '0800',
-          },
-          close: {
-            day: 2,
-            time: '1800',
-          },
+        close: {
+          day: 1,
+          time: '1800',
         },
-        {
-          open: {
-            day: 3,
-            time: '0800',
-          },
-          close: {
-            day: 3,
-            time: '1800',
-          },
+      },
+      {
+        open: {
+          day: 2,
+          time: '0800',
         },
-        {
-          open: {
-            day: 4,
-            time: '0800',
-          },
-          close: {
-            day: 4,
-            time: '1800',
-          },
+        close: {
+          day: 2,
+          time: '1800',
         },
-        {
-          open: {
-            day: 5,
-            time: '0800',
-          },
-          close: {
-            day: 5,
-            time: '1800',
-          },
+      },
+      {
+        open: {
+          day: 3,
+          time: '0800',
         },
-        {
-          open: {
-            day: 6,
-            time: '0900',
-          },
-          close: {
-            day: 6,
-            time: '1200',
-          },
+        close: {
+          day: 3,
+          time: '1800',
         },
-      ],
-      weekdayText: [
-        'Monday: 8:00\u202fAM – 6:00\u202fPM',
-        'Tuesday: 8:00\u202fAM – 6:00\u202fPM',
-        'Wednesday: 8:00\u202fAM – 6:00\u202fPM',
-        'Thursday: 8:00\u202fAM – 6:00\u202fPM',
-        'Friday: 8:00\u202fAM – 6:00\u202fPM',
-        'Saturday: 9:00\u202fAM – 12:00\u202fPM',
-        'Sunday: Closed',
-      ],
-    },
-    placeId: 'ChIJw8lXsNE3DW0RoOO-tXtcMMQ',
-    rating: 5,
-    website: '',
-    formattedPhoneNumber: '09 445 3206',
-    formattedAddress:
-      '1 Ewen Alison Avenue, Devonport, Auckland 0624, New Zealand',
+      },
+      {
+        open: {
+          day: 4,
+          time: '0800',
+        },
+        close: {
+          day: 4,
+          time: '1800',
+        },
+      },
+      {
+        open: {
+          day: 5,
+          time: '0800',
+        },
+        close: {
+          day: 5,
+          time: '1800',
+        },
+      },
+      {
+        open: {
+          day: 6,
+          time: '0900',
+        },
+        close: {
+          day: 6,
+          time: '1200',
+        },
+      },
+    ],
+    weekdayText: [
+      'Monday: 8:00\u202fAM – 6:00\u202fPM',
+      'Tuesday: 8:00\u202fAM – 6:00\u202fPM',
+      'Wednesday: 8:00\u202fAM – 6:00\u202fPM',
+      'Thursday: 8:00\u202fAM – 6:00\u202fPM',
+      'Friday: 8:00\u202fAM – 6:00\u202fPM',
+      'Saturday: 9:00\u202fAM – 12:00\u202fPM',
+      'Sunday: Closed',
+    ],
   },
-]
+  placeId: 'ChIJw8lXsNE3DW0RoOO-tXtcMMQ',
+  rating: 5,
+  website: '',
+  formattedPhoneNumber: '09 445 3206',
+  formattedAddress:
+    '1 Ewen Alison Avenue, Devonport, Auckland 0624, New Zealand',
+}
