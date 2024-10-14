@@ -6,7 +6,6 @@ import {
   Text,
   FlatList,
   StyleSheet,
-  Button,
   TouchableOpacity,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -33,20 +32,20 @@ export default function ClinicsList({ clinics }: Props) {
     }
 
     fetchDetails()
-  }, [clinics]) // Dependency array ensures this runs once when clinics prop changes
+  }, [clinics])
 
   async function saveClinic(clinic: ClinicDetails) {
-    console.log(clinic)
+    console.log('button', clinic)
   }
 
-  if (clinicDetails)
-    return (
-      <FlatList
-        style={styles.list}
-        data={clinicDetails}
-        keyExtractor={(item, index) => `${item.placeId}-${index}`}
-        renderItem={({ item }) => (
-          <View style={styles.container}>
+  return (
+    <FlatList
+      style={styles.list}
+      data={clinicDetails}
+      keyExtractor={(item) => item.placeId}
+      renderItem={({ item }) => (
+        <View style={styles.container}>
+          <View style={styles.icon}>
             <TouchableOpacity onPress={() => saveClinic(item)}>
               <Icon
                 name="star-o"
@@ -54,24 +53,25 @@ export default function ClinicsList({ clinics }: Props) {
                 size={24}
                 color="#FFD700"
               />
-              <Text style={styles.buttonText}>Save to Favourites</Text>
             </TouchableOpacity>
+          </View>
+          <View style={styles.textContainer}>
             <Text>{item.name}</Text>
             <Text>{item.formattedAddress}</Text>
             <Text>{item.formattedPhoneNumber}</Text>
             <Text>{item.website}</Text>
             <Text>{item.openingHours.weekdayText}</Text>
           </View>
-        )}
-      />
-    )
+        </View>
+      )}
+    />
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 8,
     flexDirection: 'column',
-    bottom: 0,
     backgroundColor: 'white',
     borderRadius: 3,
     padding: 6,
@@ -80,19 +80,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 1,
     shadowRadius: 3.84,
-    // Shadow property for Android
-    elevation: 8, // Higher value means a more pronounced shadow
+    elevation: 8,
+    position: 'relative', // Make the container relative
   },
   list: {
     backgroundColor: 'red',
     textAlign: 'left',
-  },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#007BFF',
-    padding: 10,
-    borderRadius: 5,
   },
   buttonText: {
     color: '#fff',
@@ -100,9 +93,11 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    top: 10, // Adjust this value as needed
-    right: 10, // Adjust this value as needed
-    zIndex: 1, // Ensures the button is on top
-    marginBottom: 8,
+    top: 10,
+    right: 10,
+    zIndex: 1,
+  },
+  textContainer: {
+    paddingTop: 30,
   },
 })
