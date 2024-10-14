@@ -16,6 +16,7 @@ interface Props {
 
 export default function ClinicsList({ clinics }: Props) {
   const [clinicDetails, setClinicDetails] = useState<ClinicDetails[]>([])
+  const [isClicked, setIsClicked] = useState(false)
 
   useEffect(() => {
     // Fetch clinic details when the component is mounted
@@ -36,6 +37,7 @@ export default function ClinicsList({ clinics }: Props) {
 
   async function saveClinic(clinic: ClinicDetails) {
     console.log('button', clinic)
+    setIsClicked(true)
   }
 
   return (
@@ -46,15 +48,17 @@ export default function ClinicsList({ clinics }: Props) {
       renderItem={({ item }) => (
         <View style={styles.container}>
           <View style={styles.icon}>
+            {/* TODO: separate icon stuff into own component */}
             <TouchableOpacity onPress={() => saveClinic(item)}>
               <Icon
-                name="star-o"
+                name={isClicked ? 'star' : 'star-o'}
                 style={styles.icon}
                 size={24}
                 color="#FFD700"
               />
             </TouchableOpacity>
           </View>
+          {/* TODO: separate text stuff into own component */}
           <View style={styles.textContainer}>
             <Text>{item.name}</Text>
             <Text>{item.formattedAddress}</Text>
