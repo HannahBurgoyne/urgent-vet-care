@@ -44,8 +44,9 @@ export default function ClinicsList({ clinics }: Props) {
     <FlatList
       style={styles.list}
       data={clinicDetails}
-      keyExtractor={(item) => item.placeId}
+      keyExtractor={(item, idx) => `${item.placeId}: ${idx}`}
       renderItem={({ item }) => (
+        // TODO: sort each clinic by distance from the user
         <View style={styles.container}>
           <View style={styles.icon}>
             {/* TODO: separate icon stuff into own component */}
