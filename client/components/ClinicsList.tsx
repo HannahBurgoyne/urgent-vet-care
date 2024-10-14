@@ -1,6 +1,6 @@
 import { fetchClinicDetails } from '@/apis/vetclinics'
 import { ClinicDetails, VetClinic } from '@/models/Clinics'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { View, Text, FlatList, StyleSheet, Button } from 'react-native'
 
 interface Props {
@@ -8,65 +8,62 @@ interface Props {
 }
 
 export default function ClinicsList({ clinics }: Props) {
-  // TODO: Add distance from user, sort by nearest first
-  const [clinicDetails, setClinicDetails] = useState<ClinicDetails | null>(null)
+  const [clinicDetails, setClinicDetails] = useState<ClinicDetails[]>([])
 
-  async function handlePress(clinic: VetClinic) {
-    const clinicDetails = await fetchClinicDetails(clinic.placeId)
-    console.log(clinicDetails)
-    if (clinicDetails) {
-      setClinicDetails(clinicDetails)
+  useEffect(() => {
+    // Fetch clinic details when the component is mounted
+    async function fetchDetails() {
+      const detailsArray = await Promise.all(
+        clinics.map(async (clinic) => {
+          const details = await fetchClinicDetails(clinic.placeId)
+          return details
+        })
+      )
+
+      setClinicDetails(detailsArray as ClinicDetails[])
+      console.log(detailsArray)
     }
-  }
+
+    fetchDetails()
+  }, [clinics]) // Dependency array ensures this runs once when clinics prop changes
 
   async function saveClinic(clinic: ClinicDetails) {
     console.log(clinic)
   }
 
-  return (
-    <View style={styles.container}>
+  if (clinicDetails)
+    return (
       <FlatList
         style={styles.list}
-        data={clinics}
+        data={clinicDetails}
+        keyExtractor={(item, index) => `${item.placeId}-${index}`}
         renderItem={({ item }) => (
-          <Text
-            onPress={() => {
-              handlePress(item)
-            }}
-            style={styles.clinic}
-          >
-            {item.name}
-          </Text>
+          <View style={styles.container}>
+            <Text>{item.name}</Text>
+            <Text>{item.formattedAddress}</Text>
+            <Text>{item.formattedPhoneNumber}</Text>
+            <Text>{item.website}</Text>
+            <Text>{item.openingHours.weekdayText}</Text>
+            <Button
+              onPress={() => saveClinic(item)}
+              title="Save clinic to favourites"
+            />
+          </View>
         )}
       />
-      {clinicDetails && (
-        <>
-          <Text>{clinicDetails.formattedAddress}</Text>
-          <Text>{clinicDetails.formattedPhoneNumber}</Text>
-          <Text>{clinicDetails.website}</Text>
-          <Text>{clinicDetails.openingHours.weekdayText}</Text>
-          <Button
-            onPress={() => saveClinic(clinicDetails)}
-            title="Save clinic to favourites"
-          />
-        </>
-      )}
-    </View>
-  )
+    )
 }
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 'auto',
-    flexDirection: 'row',
-    position: 'absolute',
+    flexDirection: 'column',
     bottom: 0,
   },
   list: {
     backgroundColor: 'white',
     textAlign: 'left',
   },
-
   clinic: {
     padding: 5,
     fontWeight: '500',
