@@ -45,7 +45,6 @@ export default function ClinicMapPhone({ location, clinics }: Props) {
           >
             {clinics &&
               clinics.map((clinic, i) => (
-                // TODO: make marker clickable so it takes user to clinic details and directions
                 <Marker
                   key={`${i}: ${clinic.name}`}
                   coordinate={{
