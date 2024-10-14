@@ -19,7 +19,7 @@ export default function ClinicsList({ clinics }: Props) {
     }
   }
 
-  async function saveClinic(clinic: VetClinic) {
+  async function saveClinic(clinic: ClinicDetails) {
     console.log(clinic)
   }
 
@@ -45,7 +45,10 @@ export default function ClinicsList({ clinics }: Props) {
           <Text>{clinicDetails.formattedPhoneNumber}</Text>
           <Text>{clinicDetails.website}</Text>
           <Text>{clinicDetails.openingHours.weekdayText}</Text>
-          <Button onPress={saveClinic}>Save clinic to favourites</Button>
+          <Button
+            onPress={() => saveClinic(clinicDetails)}
+            title="Save clinic to favourites"
+          />
         </>
       )}
     </View>
